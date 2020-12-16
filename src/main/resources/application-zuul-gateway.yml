@@ -1,0 +1,23 @@
+server:
+  port: 9900
+
+spring:
+  application:
+    name: zuul-gateway
+
+# By default, Zuul will enable gateway proxy for all services registered on eureka server
+# so for security reason, we should add following setting
+zuul:
+  ignored-services: '*'
+  routes:
+    hello-service: /hello-service/** # enable proxy for needed service, this setting has the same effect when using 'path'+'serviceId' settings
+#    hello-service:
+#      path: /hello-service/**
+#      serviceId: hello-service  # request routing based on serviceid
+
+#      #url: http://localhost:8202/ # request routing based on url
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
